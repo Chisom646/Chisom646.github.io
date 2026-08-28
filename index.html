@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chisom Okafor — Data Analyst</title>
+<meta name="description" content="Portfolio of Chisom Okafor — Data Analyst specializing in Python, SQL, and data visualization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --bg-tint: #f5f8f6;
+    --card: #ffffff;
+    --border: #e1e8e3;
+    --text: #1b2420;
+    --text-dim: #5c6b63;
+    --accent: #1f6f4a;
+    --accent-deep: #164f35;
+    --accent-tint: #e7f2ec;
+    --gold: #c98a3e;
+    --gold-tint: #fbf1e3;
+    --maxw: 960px;
+    --radius: 14px;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation:none !important; transition:none !important; } }
+
+  body{
+    margin:0;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+  }
+  h1,h2,h3,h4{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--accent-deep);
+  }
+  a{ color: var(--accent); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav{
+    border-bottom: 1px solid var(--border);
+    position: sticky; top:0; background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px); z-index: 20;
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height: 68px; }
+  .navname{ font-family:'Fraunces', serif; font-weight: 600; font-size: 18px; color: var(--accent-deep); }
+  .navlinks{ display:flex; gap: 30px; font-size: 14.5px; }
+  .navlinks a{ color: var(--text-dim); text-decoration:none; position: relative; }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; right:0; bottom:-4px; height:2px;
+    background: var(--accent); transform: scaleX(0); transition: transform 0.25s ease;
+  }
+  .navlinks a:hover{ color: var(--accent-deep); }
+  .navlinks a:hover::after{ transform: scaleX(1); }
+  @media (max-width:640px){ .navlinks{ display:none; } }
+
+  /* HERO */
+  .hero{
+    position: relative;
+    padding: 76px 0 64px;
+    overflow: hidden;
+    background:
+      radial-gradient(600px 300px at 85% -10%, var(--accent-tint) 0%, transparent 70%),
+      radial-gradient(500px 260px at -5% 110%, var(--gold-tint) 0%, transparent 70%);
+  }
+  .hero-grid{ display:flex; gap: 48px; align-items:center; position: relative; z-index:1; }
+  @media (max-width: 720px){ .hero-grid{ flex-direction: column-reverse; text-align:center; } }
+
+  .photo-frame{
+    flex-shrink: 0;
+    width: 232px; height: 232px;
+    border-radius: 26px;
+    padding: 6px;
+    background: linear-gradient(155deg, var(--accent), var(--gold));
+    box-shadow: 0 24px 48px -20px rgba(31,111,74,0.35);
+  }
+  .photo-frame img{
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 8%;
+    border-radius: 20px;
+    display:block;
+    background: var(--bg);
+  }
+  @media (max-width: 720px){ .photo-frame{ width: 188px; height: 188px; margin: 0 auto; } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    background: var(--accent-tint);
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{ content:'●'; font-size: 8px; }
+
+  .hero-text h1{ font-size: clamp(30px, 4vw, 42px); margin-bottom: 6px; }
+  .hero-text .role{ font-size: 17px; color: var(--gold); font-weight: 600; margin-bottom: 16px; font-family:'Inter'; }
+  .hero-text p{ color: var(--text-dim); max-width: 56ch; margin: 0 0 22px; font-size: 15.5px; }
+
+  .contact-row{ display:flex; gap: 12px; flex-wrap: wrap; }
+  @media (max-width: 720px){ .contact-row{ justify-content:center; } }
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size: 13.5px; font-weight: 600;
+    padding: 9px 16px; border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--bg);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .pill:hover{ border-color: var(--accent); color: var(--accent); text-decoration:none; transform: translateY(-1px); }
+  .pill.primary{ background: var(--accent); color: #fff; border-color: var(--accent); }
+  .pill.primary:hover{ background: var(--accent-deep); color: #fff; }
+
+  /* STATS STRIP */
+  .stats{ background: var(--accent-deep); }
+  .stats .wrap{ display:flex; flex-wrap:wrap; padding: 30px 24px; }
+  .stat{ flex:1 1 200px; padding: 6px 24px; border-left: 1px solid rgba(255,255,255,0.18); color:#fff; }
+  .stat:first-child{ border-left:none; padding-left:0; }
+  .stat .num{ font-family:'Fraunces', serif; font-size: 26px; font-weight: 600; }
+  .stat .label{ font-size: 12.5px; color: rgba(255,255,255,0.72); margin-top:3px; }
+
+  /* SECTIONS */
+  section{ padding: 60px 0; }
+  section.tint{ background: var(--bg-tint); }
+  .section-head{ margin-bottom: 32px; }
+  .kicker{ font-size: 13px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .section-head h2{ font-size: clamp(24px, 3vw, 30px); }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* SUMMARY BADGES */
+  .summary p{ color: var(--text-dim); max-width: 74ch; font-size: 15.5px; }
+  .badges{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 20px; }
+  .badge{
+    background: var(--accent-tint); color: var(--accent-deep);
+    padding: 7px 15px; border-radius: 100px; font-size: 13.5px; font-weight: 600;
+    border: 1px solid rgba(31,111,74,0.15);
+  }
+
+  /* PROJECTS */
+  .project{
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 30px; margin-bottom: 22px; background: var(--card);
+    box-shadow: 0 1px 3px rgba(20,30,25,0.04);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .project:hover{ box-shadow: 0 16px 32px -18px rgba(20,30,25,0.18); transform: translateY(-2px); }
+  .project-top{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:flex-start; }
+  .project h3{ font-size: 20px; margin-bottom: 8px; }
+  .tagrow{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom: 12px; }
+  .tag{ font-size: 11.5px; font-weight: 600; color: var(--accent-deep); background: var(--accent-tint); padding: 3px 10px; border-radius: 100px; }
+  .project p.desc{ color: var(--text-dim); margin: 0 0 16px; max-width: 68ch; font-size: 14.5px; }
+  .project-links{ display:flex; gap: 18px; font-size: 13.5px; font-weight: 600; margin-bottom: 18px; flex-shrink:0; }
+  .project-links a::before{ content: '↗ '; }
+
+  .gallery{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .gallery.two{ grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 700px){ .gallery, .gallery.two{ grid-template-columns: 1fr; } }
+  .gallery img{
+    width: 100%; height: auto; display:block;
+    border: 1px solid var(--border); border-radius: 8px;
+  }
+
+  /* SKILLS */
+  .skills-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  @media (max-width: 820px){ .skills-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px){ .skills-grid{ grid-template-columns: 1fr; } }
+  .skill-card{
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px;
+  }
+  .skill-card .icon{
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--accent-tint); color: var(--accent-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 17px; margin-bottom: 12px;
+  }
+  .skill-card h4{ font-family:'Inter'; font-weight: 700; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text); margin: 0 0 10px; }
+  .skill-card ul{ margin:0; padding: 0; list-style: none; }
+  .skill-card li{ padding: 3px 0; font-size: 14px; color: var(--text-dim); }
+
+  /* EDUCATION */
+  .edu-item{
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 30px; margin-bottom: 20px;
+  }
+  .edu-item .school{ font-family:'Fraunces', serif; font-weight:600; font-size: 18px; color: var(--accent-deep); }
+  .edu-item .meta{ color: var(--text-dim); font-size: 14px; margin-top: 4px; }
+  .edu-item ul{ margin: 12px 0 0; padding-left: 18px; color: var(--text-dim); font-size: 14px; }
+  .edu-item ul li{ margin-bottom: 4px; }
+
+  .cert-list{ list-style:none; padding:0; margin:0; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow:hidden; }
+  .cert-list li{ padding: 15px 22px; font-size: 14.5px; border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; gap: 16px; }
+  .cert-list li:last-child{ border-bottom: none; }
+  .cert-list .cdate{ color: var(--text-dim); font-size: 13px; white-space:nowrap; }
+
+  /* CERTIFICATE GALLERY */
+  .cert-gallery{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+  }
+  @media (max-width: 780px){ .cert-gallery{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px){ .cert-gallery{ grid-template-columns: 1fr; } }
+  .cert-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cert-card:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px -16px rgba(20,30,25,0.2); }
+  .cert-card img{
+    width: 100%; height: 130px; object-fit: cover; object-position: top;
+    display: block; border-bottom: 1px solid var(--border);
+    background: #fff;
+  }
+  .cert-card .cert-name{
+    padding: 12px 14px; font-size: 13px; font-weight: 600; color: var(--text);
+  }
+  .cert-card .cert-sub{
+    padding: 0 14px 12px; font-size: 11.5px; color: var(--text-dim); margin-top: -8px;
+  }
+
+  /* LIGHTBOX */
+  .lightbox{
+    display:none; position: fixed; inset:0; z-index: 100;
+    background: rgba(15,20,17,0.88);
+    align-items:center; justify-content:center;
+    padding: 30px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{
+    max-width: 90vw; max-height: 85vh; border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-close{
+    position: absolute; top: 24px; right: 30px;
+    color: #fff; font-size: 28px; cursor:pointer;
+    background: none; border:none; line-height:1;
+  }
+
+  /* CONTACT / FOOTER */
+  footer{
+    background: var(--accent-deep); color: #fff;
+    padding: 56px 0 40px; text-align:center;
+  }
+  footer h2{ color: #fff; }
+  footer .kicker{ color: var(--gold); }
+  footer p{ color: rgba(255,255,255,0.75); max-width: 50ch; margin: 12px auto 26px; font-size: 15px; }
+  footer .contact-row{ justify-content:center; margin-bottom: 30px; }
+  footer .pill{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color:#fff; }
+  footer .pill:hover{ background: rgba(255,255,255,0.16); color:#fff; border-color: rgba(255,255,255,0.4); }
+  .copyright{ color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 10px; }
+
+  ::selection{ background: var(--accent-tint); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="navname">Chisom Okafor</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="about">
+  <div class="wrap hero-grid">
+    <div class="photo-frame">
+      <img src="assets/photo.jpg" alt="Chisom Okafor">
+    </div>
+    <div class="hero-text">
+      <div class="eyebrow">Open to freelance &amp; full-time work</div>
+      <h1>Chisom Okafor</h1>
+      <div class="role">Data Analyst</div>
+      <p>First-Class Honours Software Engineering graduate with hands-on data analytics experience across the full workflow — sourcing and cleaning data, writing SQL queries, building visualizations, and delivering clear, decision-ready insights.</p>
+      <div class="contact-row">
+        <a class="pill primary" href="mailto:okaforchisom646@gmail.com">Email me</a>
+        <a class="pill" href="https://www.linkedin.com/in/chisomokafor646" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="pill" href="https://github.com/Chisom646" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="num">4.64/5.0</div><div class="label">CGPA, First Class Honours</div></div>
+    <div class="stat"><div class="num">4</div><div class="label">Data &amp; ML projects shipped</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">NaijaTranslate detection accuracy</div></div>
+    <div class="stat"><div class="num">113 yrs</div><div class="label">of crash data analyzed</div></div>
+  </div>
+</div>
+
+<section class="summary">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">About</div>
+      <h2>What I bring to a project</h2>
+    </div>
+    <p>Proficient in Python (Pandas, Matplotlib, Seaborn), SQL (PostgreSQL, MySQL), and Excel, with a track record of turning raw datasets into interactive dashboards and reports. Known for explaining technical findings in plain language.</p>
+    <div class="badges">
+      <span class="badge">Python</span>
+      <span class="badge">SQL</span>
+      <span class="badge">Pandas</span>
+      <span class="badge">Streamlit</span>
+      <span class="badge">Power BI</span>
+      <span class="badge">Excel</span>
+      <span class="badge">Matplotlib / Seaborn</span>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="projects">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Selected work</div>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>Aircraft Crash Analysis (1908–2024)</h3>
+          <div class="tagrow">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Streamlit</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Chisom646/Aircrash" target="_blank" rel="noopener">Code</a>
+          <a href="https://aircrash-ubpvj2wggouzrtffmctamk.streamlit.app" target="_blank" rel="noopener">Live dashboard</a>
+        </div>
+      </div>
+      <p class="desc">Cleaned and analyzed over a century of global aircraft crash records, then built an interactive Streamlit dashboard to visualize trends by year, cause, and region.</p>
+      <div class="gallery">
+        <img src="assets/air-overview.png" alt="Dashboard overview with filters and KPI summary" loading="lazy">
+        <img src="assets/air-trend.png" alt="Fatalities over time trend chart" loading="lazy">
+        <img src="assets/air-season.png" alt="Crashes by season pie chart" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>NaijaTranslate</h3>
+          <div class="tagrow">
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">HuggingFace</span><span class="tag">PEFT / LoRA</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Chisom646" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+      <p class="desc">Final year project — an intelligent translation system for English, Yoruba, Igbo, and Hausa, combining three AI models into a single pipeline with automatic language detection and a REST API.</p>
+      <div class="gallery two">
+        <img src="assets/nt-hero.png" alt="NaijaTranslate landing page" loading="lazy">
+        <img src="assets/nt-eval.png" alt="Evaluation results table" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>Analyzing International Debt Statistics</h3>
+          <div class="tagrow"><span class="tag">SQL</span><span class="tag">Python</span></div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Chisom646" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+      <p class="desc">Queried and aggregated World Bank international debt data to identify the countries with the highest total debt and lowest principal repayment, practicing aggregation, filtering, and querying on a large real-world financial dataset.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <h3>Mini SQL Project</h3>
+          <div class="tagrow"><span class="tag">MySQL</span></div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Chisom646/SQL-PRACTICE" target="_blank" rel="noopener">Code</a>
+        </div>
+      </div>
+      <p class="desc">A series of SQL queries against a relational database to answer real-world business questions, reinforcing joins, filtering, and table design.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Toolbox</div>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon">⌘</div>
+        <h4>Languages &amp; Querying</h4>
+        <ul><li>Python</li><li>SQL (PostgreSQL, MySQL)</li><li>R</li></ul>
+      </div>
+      <div class="skill-card">
+        <div class="icon">▤</div>
+        <h4>Data Analysis Tools</h4>
+        <ul><li>Pandas, NumPy</li><li>Matplotlib, Seaborn</li><li>Excel</li><li>Streamlit, Power BI</li></ul>
+      </div>
+      <div class="skill-card">
+        <div class="icon">✦</div>
+        <h4>Analytical</h4>
+        <ul><li>Data Cleaning</li><li>Statistics &amp; Modelling</li><li>Data Visualization</li><li>Critical Thinking</li></ul>
+      </div>
+      <div class="skill-card">
+        <div class="icon">◎</div>
+        <h4>Professional</h4>
+        <ul><li>Clear Communication</li><li>Teamwork</li><li>Adaptability</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="education">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <div class="kicker">Background</div>
+      <h2>Education &amp; Certifications</h2>
+    </div>
+
+    <div class="edu-item">
+      <div class="school">Bowen University — B.Sc. Software Engineering</div>
+      <div class="meta">2022 – 2026 · Osun, Nigeria · First Class Honours, CGPA 4.64/5.0</div>
+      <ul>
+        <li>Concentrations: Data Analysis &amp; Modelling, Data Visualization, Critical Thinking</li>
+        <li>Coursework: Statistics, Discrete Mathematics, Computing in Python, Object-Oriented Programming, Database Management Systems</li>
+      </ul>
+    </div>
+
+    <ul class="cert-list">
+      <li><span>Certified Data Analyst — with Distinction, HiiT</span><span class="cdate">Oct 2025</span></li>
+      <li><span>SQL Track (5 courses), DataCamp</span><span class="cdate">Apr 2024 – Aug 2025</span></li>
+      <li><span>Data Visualization &amp; ML, DataCamp</span><span class="cdate">Mar – Aug 2025</span></li>
+      <li><span>Data Science Nigeria — AI Bootcamp 2025</span><span class="cdate">Oct 2025</span></li>
+    </ul>
+
+    <div class="cert-gallery">
+      <div class="cert-card" onclick="openLightbox('assets/cert-hiit.png')">
+        <img src="assets/cert-hiit.png" alt="HiiT Certified Data Analyst with Distinction">
+        <div class="cert-name">Certified Data Analyst — Distinction</div>
+        <div class="cert-sub">HiiT · Oct 2025</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-dsn-bootcamp.png')">
+        <img src="assets/cert-dsn-bootcamp.png" alt="Data Science Nigeria AI Bootcamp 2025 certificate">
+        <div class="cert-name">AI Bootcamp 2025</div>
+        <div class="cert-sub">Data Science Nigeria · Oct 2025</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-sklearn.png')">
+        <img src="assets/cert-sklearn.png" alt="Supervised Learning with scikit-learn certificate">
+        <div class="cert-name">Supervised Learning w/ scikit-learn</div>
+        <div class="cert-sub">DataCamp · Aug 2025</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-seaborn.png')">
+        <img src="assets/cert-seaborn.png" alt="Data Visualization with Seaborn certificate">
+        <div class="cert-name">Data Visualization w/ Seaborn</div>
+        <div class="cert-sub">DataCamp · Apr 2025</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-matplotlib.png')">
+        <img src="assets/cert-matplotlib.png" alt="Data Visualization with Matplotlib certificate">
+        <div class="cert-name">Data Visualization w/ Matplotlib</div>
+        <div class="cert-sub">DataCamp · Mar 2025</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-dbdesign.png')">
+        <img src="assets/cert-dbdesign.png" alt="Database Design certificate">
+        <div class="cert-name">Database Design</div>
+        <div class="cert-sub">DataCamp · Aug 2024</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-postgres-func.png')">
+        <img src="assets/cert-postgres-func.png" alt="Functions for Manipulating Data in PostgreSQL certificate">
+        <div class="cert-name">Functions for Manipulating Data in PostgreSQL</div>
+        <div class="cert-sub">DataCamp · Aug 2024</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-postgres-stats.png')">
+        <img src="assets/cert-postgres-stats.png" alt="PostgreSQL Summary Stats and Window Functions certificate">
+        <div class="cert-name">PostgreSQL Summary Stats &amp; Window Functions</div>
+        <div class="cert-sub">DataCamp · Aug 2024</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-joining-sql.png')">
+        <img src="assets/cert-joining-sql.png" alt="Joining Data in SQL certificate">
+        <div class="cert-name">Joining Data in SQL</div>
+        <div class="cert-sub">DataCamp · Jul 2024</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-intermediate-sql.png')">
+        <img src="assets/cert-intermediate-sql.png" alt="Intermediate SQL certificate">
+        <div class="cert-name">Intermediate SQL</div>
+        <div class="cert-sub">DataCamp · May 2024</div>
+      </div>
+      <div class="cert-card" onclick="openLightbox('assets/cert-intro-sql.png')">
+        <img src="assets/cert-intro-sql.png" alt="Introduction to SQL certificate">
+        <div class="cert-name">Introduction to SQL</div>
+        <div class="cert-sub">DataCamp · Apr 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="Certificate full view">
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="kicker">Let's work together</div>
+    <h2>Get in touch</h2>
+    <p>Open to freelance work, internships, and full-time roles in data analytics and AI/ML engineering.</p>
+    <div class="contact-row">
+      <a class="pill" href="mailto:okaforchisom646@gmail.com">okaforchisom646@gmail.com</a>
+      <a class="pill" href="tel:+2347040626515">070 4062 6515</a>
+      <a class="pill" href="https://www.linkedin.com/in/chisomokafor646" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pill" href="https://github.com/Chisom646" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="copyright">© 2026 Chisom Okafor</div>
+  </div>
+</footer>
+
+<script>
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  (function(){
+    const items = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    items.forEach(i => io.observe(i));
+  })();
+</script>
+
+</body>
+</html>
